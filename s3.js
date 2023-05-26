@@ -19,7 +19,9 @@ export async function uploadFile(file) {
         Key: file.name,
         Body: stream
     }
-    const command = new PutObjectCommand(uploadParams)
-    return await client.send(command)
+    let url='https://tesisloja.s3.amazonaws.com/'+file.name;
+    const command = new PutObjectCommand(uploadParams);
+    console.log(url);
+    return  [await client.send(command),url]
 }
 
